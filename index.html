@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desktop Background Shop</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Backdrop Bliss</h1>
+        <nav>
+            <a href="#gallery">Gallery</a>
+            <a href="#about">About</a>
+        </nav>
+    </header>
+    <main>
+
+        <section id="Welcome-section">
+            <h2>About Us</h2>
+            <p class="welcome">Welcome to <strong>Backdrop Bliss</strong>, your one-stop shop for stunning desktop backgrounds that inspire creativity and enhance your workspace!
+
+                We believe that your desktop is more than just a screen—it's your personal canvas. Whether you're drawn to breathtaking landscapes, abstract designs, or vibrant patterns, our curated collection has something for everyone.
+                
+                Each image in our gallery is handpicked for its quality and aesthetic appeal, ensuring you get a wallpaper that not only looks amazing but also complements your unique style.
+                
+                Explore, download, and transform your screen into a visual masterpiece. We're here to help you make your digital space as creative and dynamic as you are!
+                
+                Backdrop Bliss – Where every desktop tells a story.</p>
+        </section>
+
+        <button id="toggle-instructions" class="toggle-btn">Show Instructions</button>
+        <section id="guide">
+            <p class="instructions" data-step="1">
+               1. Head to the Gallery section of our site. Scroll through our collection of desktop backgrounds, featuring various categories like Nature, Abstract, and Minimalist.
+                Use the Filter Buttons at the top to narrow down your search by category. 
+            </p>
+            <p class="intructions" data-step="2">
+                2. Click on any image thumbnail to view a larger preview. A pop-up window will display the full-sized image so you can see the details.
+                If you love what you see, proceed to download!
+            </p>
+            <p class="intructions" data-step="3">
+                3. Each background has a Download Button below it.
+                Simply click the button to start your download.
+                Your image will be saved to your device, ready to be used as your desktop wallpaper.
+            </p>
+            <p class="intructions" data-step="4">
+                4. Once downloaded, locate the image file on your device.
+                On Windows: Right-click the image and select Set as Desktop Background.
+                On macOS: Right-click the image, select Set Desktop Picture, or apply it through System Preferences.
+            </p>
+            <p class="intructions" data-step="5">
+                5. If you find a background you think others will love, share it!
+                Spread the joy by telling friends about Backdrop Bliss or sharing the link directly.
+            </p>   
+            <span class="tagline">Backdrop Bliss – Where every desktop tells a story.</span>
+        </section>
+        <section id="gallery">
+            <h2>Gallery</h2>
+            <div class="filters">
+                <button class="filter-btn" data-category="all">All</button>
+                <button class="filter-btn" data-category="space">Space</button>
+                <button class="filter-btn" data-category="abstract">Abstract</button>
+                <button class="filter-btn" data-category="city-scape">City-scape</button>
+            </div>
+            <div class="backgrounds">
+                <div class="background" data-category="city-scape" >
+                    <img src="imgs\CityBlock.jpg" alt="city Background">
+                    <p class="citation">Image by https://unsplash.com/@LukeStackpoole</p>
+                    <button class="download-btn">Download</button>
+                </div>
+                <div class="background" data-category="city-scape">
+                    <img src="imgs\citycliff.jpg" alt="Abstract Background">
+                    <p class="citation">Image by https://unsplash.com/@AndersJildén</p>
+                    <button class="download-btn">Download</button>
+                </div>
+                <div class="background" data-category="space">
+                    <img src="imgs\earthinspace.jpg" alt="Abstract Background">
+                    <p class="citation">Image by https://unsplash.com/@NASA</p>
+                    <button class="download-btn">Download</button>
+                </div>
+                <div class="background" data-category="abstract">
+                    <img src="imgs\sign.jpg" alt="Abstract Background">
+                    <p class="citation">Image by https://unsplash.com/@ClarkTibbs</p>
+                    <button class="download-btn">Download</button>
+                </div>
+                <div class="background" data-category="abstract">
+                    <img src="imgs\lanterns.jpg" alt="Abstract Background">
+                    <p class="citation">Image by https://unsplash.com/@TudorBaciu</p>
+                    <button class="download-btn">Download</button>
+                </div>
+                <div class="background" data-category="abstract">
+                    <img src="imgs\MoonOverMountains.jpg" alt="Abstract Background">
+                    <p class="citation">Image by https://unsplash.com/@SalvatoreAndreaSantacroce</p>
+                    <button class="download-btn">Download</button>
+                </div>
+                <div class="background" data-category="space">
+                    <img src="imgs\Spaceperson.jpg" alt="Abstract Background">
+                    <p class="citation">Image by https://unsplash.com/@GregRakozy</p>
+                    <button class="download-btn">Download</button>
+                </div>
+                <div class="background" data-category="abstract">
+                    <img src="imgs\Tile_roof.jpg" alt="Abstract Background">
+                    <p class="citation">Image by https://unsplash.com/@AndrewRidley</p>
+                    <button class="download-btn">Download</button>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    <footer>
+        <p>© 2024 Backdrop Bliss Inc. All rights reserved.</p>
+    </footer>
+    <div id="modal" style="display: none;">
+        <img src="" alt="Background Preview">
+    </div>
+    <script src="script.js"></script>
+    <script>
+        //making background show from category
+        $('.filter-btn').click(function () {
+                let category = $(this).data('category');
+                if (category === 'all') {
+                    $('.background').show();
+                } else {
+                    $('.background').hide();
+                    $(`.background[data-category="${category}"]`).show();
+                }
+        });
+       //show instructions
+        $(document).ready(function() {
+    
+                $('#guide').hide();
+
+                
+                $('#toggle-instructions').click(function() {
+                    const container = $('#guide');
+                const isHidden = !container.is(':visible');
+
+                
+                if (isHidden) {
+                    container.slideDown();
+                    $(this).text('Hide Instructions');
+                } else {
+                    container.slideUp();
+                    $(this).text('Show Instructions');
+                }
+            });
+        });
+        //show preview
+        $('.background img').click(function () {
+            let imgSrc = $(this).attr('src');
+            $('#modal img').attr('src', imgSrc);
+            $('#modal').fadeIn();
+        });
+        $('#modal').click(function () {
+            $(this).fadeOut();
+        });
+        //move to href on page
+        $('nav a').click(function (e) {
+            e.preventDefault();
+            let target = $($(this).attr('href'));
+            $('html, body').animate({ scrollTop: target.offset().top }, 800);
+        });
+
+        $('.background').hover(
+            function () {
+                $(this).css('transform', 'scale(1.1)').css('box-shadow', '0 4px 8px rgba(0,0,0,0.3)');
+            },
+            function () {
+                $(this).css('transform', 'scale(1)').css('box-shadow', 'none');
+            }
+        );
+        //shower user feedback when a download button is pressed, and let them know when "download" is successful
+        $('.download-btn').click(function () {
+            $(this).text('Downloading...').delay(2000).queue(function (next) {
+                $(this).text('Downloaded').css('background-color', 'green');
+                next();
+            });
+        });
+    </script>
+</body>
+</html>
